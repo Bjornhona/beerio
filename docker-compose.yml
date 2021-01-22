@@ -1,0 +1,52 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo:latest'
+    restart: always
+    volumes:
+      - mongodb:/data/beeriodb
+
+  nginx:
+    depends_on: 
+      - api
+      - web
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3050:80'
+
+  api:
+    build:
+      context: ./beerio-backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./beerio-backend:/app
+    external_links:
+      - mongo
+    env_file: ./beerio-backend/.env.sample
+    # command: ["npm", "run", "test"]
+  
+  web:
+    stdin_open: true
+    build:
+      context: ./beerio-frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./beerio-frontend:/app
+    env_file: ./beerio-frontend/.env.production
+
+  tests:
+    build:
+      context: ./beerio-frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./beerio-frontend:/app
+    command: ["npm", "run", "test"]
+
+volumes:
+  mongodb:
