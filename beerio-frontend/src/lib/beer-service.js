@@ -4,9 +4,9 @@ class BeerService {
   constructor() {
     this.beer = axios.create({
       // baseURL: '/app',
-      // baseURL: process.env.REACT_APP_BASEURL,
+      baseURL: process.env.REACT_APP_BASEURL,
       // baseURL: 'http://localhost:5000',
-      // withCredentials: true
+      withCredentials: true
     })
   }
 

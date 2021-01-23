@@ -26,7 +26,7 @@ services:
       - ./beerio-backend:/app
     external_links:
       - mongo
-    # env_file: ./beerio-backend/.env.sample
+    env_file: ./beerio-backend/.env.sample
     # command: ["npm", "run", "test"]
   
   web:
@@ -37,7 +37,7 @@ services:
     volumes:
       - /app/node_modules
       - ./beerio-frontend:/app
-    # env_file: ./beerio-frontend/.env.production
+    env_file: ./beerio-frontend/.env.production
 
   tests:
     build:
@@ -46,6 +46,7 @@ services:
     volumes:
       - /app/node_modules
       - ./beerio-frontend:/app
+    # env_file: ./beerio-frontend/.env.production
     command: ["npm", "run", "test"]
 
 volumes:
