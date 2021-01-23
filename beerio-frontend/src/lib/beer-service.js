@@ -11,31 +11,31 @@ class BeerService {
   }
 
   getBeers() {
-    return this.beer.get('/beers')
+    return this.beer.get('/api/beers')
     .then(({data}) => data)
     .catch(error => console.error('Error'));
   }
 
   getFavorites() {
-    return this.beer.get('/beers/favorites')
+    return this.beer.get('/api/beers/favorites')
     .then(({data}) => data)
     .catch(error => console.error('Error'));
   }
 
   postFavorite(data) {
-    return this.beer.put('/beers', data)
+    return this.beer.put('/api/beers', data)
     .then(({data}) => data)
     .catch(error => console.error('Error'));
   }
 
   getBeer(id) {
-    return this.beer.get(`/beers/${id}`)
+    return this.beer.get(`/api/beers/${id}`)
     .then(({data}) => data)
     .catch(error => console.error('Error'));
   }
 
   getBreweries() {
-    return this.beer.get('/beers/breweries')
+    return this.beer.get('/api/beers/breweries')
     .then(({data}) => data)
     .catch(error => console.error('Error'));
   }
