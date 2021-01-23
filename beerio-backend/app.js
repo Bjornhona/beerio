@@ -31,8 +31,8 @@ const app = express();
 // app.use(favicon(__dirname + '/build/favicon.ico'));
 
 app.use(cors({
-  credentials: true,
-  origin: [process.env.PUBLIC_DOMAIN]
+  // credentials: true,
+  // origin: [process.env.PUBLIC_DOMAIN]
 }));
 
 app.use(session({
