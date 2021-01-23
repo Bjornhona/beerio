@@ -12,15 +12,15 @@ services:
       - web
     restart: always
     build:
-      context: ./nginx
       dockerfile: Dockerfile.dev
+      context: ./nginx
     ports:
       - '3050:80'
 
   api:
     build:
-      context: ./beerio-backend
       dockerfile: Dockerfile.dev
+      context: ./beerio-backend
     volumes:
       - /app/node_modules
       - ./beerio-backend:/app
@@ -32,8 +32,8 @@ services:
   web:
     stdin_open: true
     build:
-      context: ./beerio-frontend
       dockerfile: Dockerfile.dev
+      context: ./beerio-frontend
     volumes:
       - /app/node_modules
       - ./beerio-frontend:/app
@@ -41,8 +41,8 @@ services:
 
   tests:
     build:
-      context: ./beerio-frontend
       dockerfile: Dockerfile.dev
+      context: ./beerio-frontend
     volumes:
       - /app/node_modules
       - ./beerio-frontend:/app
