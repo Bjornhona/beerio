@@ -19,7 +19,8 @@ services:
 
   api:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+      # dockerfile: Dockerfile.dev
       context: ./beerio-backend
     volumes:
       - /app/node_modules
@@ -39,15 +40,15 @@ services:
       - ./beerio-frontend:/app
     env_file: ./beerio-frontend/.env.production
 
-  tests:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./beerio-frontend
-    volumes:
-      - /app/node_modules
-      - ./beerio-frontend:/app
-    # env_file: ./beerio-frontend/.env.production
-    command: ["npm", "run", "test"]
+  # tests:
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./beerio-frontend
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./beerio-frontend:/app
+  #   # env_file: ./beerio-frontend/.env.production
+  #   command: ["npm", "run", "test"]
 
 volumes:
   mongodb:
