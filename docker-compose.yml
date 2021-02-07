@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - mongodb:/data/beeriodb
+    # container_name: mongo
 
   nginx:
     depends_on: 
@@ -16,6 +17,8 @@ services:
       context: ./nginx
     ports:
       - '3050:80'
+    # ports:
+    #   - '80:80'
 
   api:
     build:
@@ -29,6 +32,7 @@ services:
       - mongo
     # env_file: ./beerio-backend/.env.sample
     # command: ["npm", "run", "test"]
+    # container_name: api
   
   web:
     stdin_open: true
@@ -39,6 +43,7 @@ services:
       - /app/node_modules
       - ./beerio-frontend:/app
     # env_file: ./beerio-frontend/.env.production
+    # container_name: web
 
   # tests:
   #   build:
